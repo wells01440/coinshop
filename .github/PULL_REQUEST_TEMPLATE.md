@@ -4,5 +4,7 @@
 
 ## Testing
 
-- [ ] `ruff check .` passes
-- [ ] `pytest` passes
+- [ ] `uv run ruff check .` passes
+- [ ] `uv run ruff format --check .` passes
+- [ ] `uv run mypy .` passes
+- [ ] `uv run pytest` passes

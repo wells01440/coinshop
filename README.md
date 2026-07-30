@@ -6,19 +6,19 @@ Early scaffold — no functionality yet.
 
 ## Development
 
-Requires Python >= 3.11.
+Requires [uv](https://docs.astral.sh/uv/) and Python >= 3.11.
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e ".[dev]"
+uv sync
 ```
 
 Run checks locally before pushing:
 
 ```bash
-ruff check .
-pytest
+uv run ruff check .
+uv run ruff format --check .
+uv run mypy .
+uv run pytest
 ```
 
 ## License
