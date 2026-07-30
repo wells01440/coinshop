@@ -12,8 +12,8 @@ license = { file = "LICENSE" }
 authors = [{ name = "Andy Wells" }]
 dependencies = []
 
-[project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.6"]
+[dependency-groups]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.6", "mypy>=1.11"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -23,7 +23,24 @@ line-length = 100
 target-version = "py311"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B"]
+select = ["ALL"]
+ignore = [
+  "D",      # docstrings not required yet
+  "CPY001", # no copyright headers
+  "COM812", # conflicts with formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"] # assert is expected in tests
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unreachable = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--cov=coinshop --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["src"]
